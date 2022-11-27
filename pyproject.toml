@@ -9,8 +9,9 @@ packages = [{include = "text_generation_gpt"}]
 [tool.poetry.dependencies]
 python = "^3.9"
 transformers = "^4.24.0"
-Django = "^4.1.3"
 pymongo = "^4.3.2"
+fastapi = "^0.88.0"
+uvicorn = "^0.20.0"
 torch = "^1.13.0"
 torchserve = "^0.6.0"
 

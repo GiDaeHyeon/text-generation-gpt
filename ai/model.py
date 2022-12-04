@@ -11,7 +11,6 @@ class PatentGenerator(pl.LightningModule):
         super().__init__()
         self.tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
         self.model = GPT2LMHeadModel.from_pretrained("gpt2")
-        self.tokenizer()
 
     def forward(self,
             input_ids: torch.Tensor,

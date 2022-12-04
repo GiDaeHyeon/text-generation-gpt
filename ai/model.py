@@ -32,7 +32,7 @@ class PatentGenerator(pl.LightningModule):
             )
         return [self.tokenizer(output[0], skip_special_tokens=True) for output in outputs]
 
-    def configure_callbacks(self):
+    def configure_optimizers(self):
         return optim.AdamW(
             params=self.model.parameters(), lr=1e-4
         )

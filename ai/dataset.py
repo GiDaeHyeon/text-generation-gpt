@@ -18,7 +18,8 @@ class PatentDataset(Dataset):
 
     def __getitem__(self, idx) -> tuple:
         txt = self.tokenizer.eos_token.join(self.data[idx].split("\t"))
-        tokens = self.tokenizer(txt, return_tensors="pt")
+        tokens = self.tokenizer(txt, return_tensors="pt", truncation=True,
+                                max_length=1024, padding="max_length")
         return tokens["input_ids"], tokens["attention_mask"]
 
     def __len__(self) -> int:

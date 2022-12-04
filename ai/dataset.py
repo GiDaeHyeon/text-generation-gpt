@@ -36,17 +36,19 @@ class PatentDataModule(pl.LightningDataModule):
     def train_dataloader(self) -> DataLoader:
         return DataLoader(
             dataset=self.train_dataset,
-            batch_size=32,
+            batch_size=2,
             shuffle=True,
             drop_last=True,
-            pin_memory=True
+            pin_memory=True,
+            num_workers=4
         )
 
     def val_dataloader(self) -> DataLoader:
         return DataLoader(
             dataset=self.val_dataset,
-            batch_size=64,
+            batch_size=4,
             shuffle=False,
             drop_last=False,
-            pin_memory=True
+            pin_memory=True,
+            num_workers=4
         )

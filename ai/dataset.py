@@ -21,6 +21,9 @@ class PatentDataset(Dataset):
         tokens = self.tokenizer(txt, return_tensors="pt")
         return tokens["input_ids"], tokens["attention_mask"]
 
+    def __len__(self) -> int:
+        return len(self.data)
+
 
 class PatentDataModule(pl.LightningDataModule):
     def __init__(self, data_dir: str) -> None:

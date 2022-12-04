@@ -12,6 +12,7 @@ class PatentDataset(Dataset):
     def __init__(self, data_dir: str, is_train: bool) -> None:
         super().__init__()
         self.tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+        self.tokenizer.pad_token = self.tokenizer.eos_token
         with Path(data_dir).open("r") as fp:
             all_data = fp.readlines()
         self.data = all_data[:250000] if is_train else all_data[250000:]

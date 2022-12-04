@@ -10,6 +10,7 @@ class PatentGenerator(pl.LightningModule):
     def __init__(self) -> None:
         super().__init__()
         self.tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+        self.tokenizer.pad_token = self.tokenizer.eos_token
         self.model = GPT2LMHeadModel.from_pretrained("gpt2")
 
     def forward(self,

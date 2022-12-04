@@ -15,12 +15,12 @@ class PatentGenerator(pl.LightningModule):
 
     def forward(self,
             input_ids: torch.Tensor,
-            attention_mask: torch.Tensor,
+            attention_masks: torch.Tensor,
             labels: Optional[torch.Tensor] = None
         ) -> torch.Tensor:
         model_output = self.model(
                 input_ids=input_ids,
-                attention_mask=attention_mask,
+                attention_mask=attention_masks,
                 labels=input_ids if labels is None else labels
             )  # type: ignore
         return model_output.loss

@@ -1,7 +1,7 @@
 from typing import Optional
 
 import torch
-import torch.nn as nn
+import torch.optim as optim
 import pytorch_lightning as pl
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
@@ -31,6 +31,11 @@ class PatentGenerator(pl.LightningModule):
             top_k=50, top_p=.95, num_return_sequences=5
             )
         return [self.tokenizer(output[0], skip_special_tokens=True) for output in outputs]
+
+    def configure_callbacks(self):
+        return optim.AdamW(
+            params=self.model.parameters(), lr=1e-4
+        )
 
     def training_step(self, batch, batch_idx, *args, **kwargs) -> dict:
         input_ids, attention_masks = batch
